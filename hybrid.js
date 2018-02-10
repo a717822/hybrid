@@ -1,5 +1,5 @@
 /**
- * Created by by on 2017/6/2.
+ * Created by yangzilong on 2017/6/2.
  * 用于混合IOS开发模块调用的方法
  * 1.webView调用JS事件 ;
  * 2.js调用webview事件
@@ -63,6 +63,7 @@ var hybrid = {
 
     /*
      * 智能机浏览器版本信息:
+     * 调用该方法前，请现将您APP的userAgent修改为myapp，或者其他。
      */
     versions: function () {
         var u = navigator.userAgent;
@@ -81,14 +82,12 @@ var hybrid = {
             qq: u.match(/\sQQ/i) == "qq",                                 //是否QQ
             is_weixin:u.match(/MicroMessenger/i) == "micromessenger",     //判断是不是微信端
 
-            // 最美旅行家APP
-            myapp:- 1 != u.indexOf("myapp"),                              //是否是安卓最美旅行家APP
-            myiOSapp:- 1 != u.indexOf("myiOSapp")                         //是否是IOS最美旅行家APP
+            // APP
+            myapp:- 1 != u.indexOf("myapp"),                              
         };
     }(),
     language:(navigator.browserLanguage || navigator.language).toLowerCase(),
 };
 
-module.exports = {
-    hybrid:hybrid
-};
+// 模块暴露
+exports.hybrid = hybird;
