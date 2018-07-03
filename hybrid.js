@@ -6,7 +6,7 @@
  */
 
 /***      IOS  webView调用JS事件         ***/
-// eg: this.hybrid.hybrid.registerHandler('methodName',function (data,responseCallback) {
+// eg: this.hybrid.registerHandler('methodName',function (data,responseCallback) {
 //          alert('指定接收收到来自原生数据： ' + data);
 //          var responseData = '指定接收收到来自原生的数据，回传数据给你';
 //          responseCallback(responseData);
@@ -14,12 +14,12 @@
 
 /***    js调用IOS webview事件     ***/
 // eg: var data = {};
-// this.hybrid.hybrid.callHandler('methodName',data,function(response){
+// this.hybrid.callHandler('methodName',data,function(response){
 //      console.log(response);  //处理原生过来的回调
 // });
 
 var hybrid = {
-    init:function (callback) {
+    init:(callback) => {
         if (window.WebViewJavascriptBridge) {
             return callback(WebViewJavascriptBridge);
         }
@@ -41,7 +41,7 @@ var hybrid = {
      * @param method  方法名
      * @param callback  回调函数
      */
-    registerHandler: function(method, callback) {
+    registerHandler: (method, callback) => {
         var _this = this;
         _this.init(function(bridge) {
             bridge.registerHandler(method, callback);
@@ -54,7 +54,7 @@ var hybrid = {
      * @param data  参数
      * @param callback  回调函数
      */
-    callHandler: function(method, data, callback) {
+    callHandler: (method, data, callback) => {
         var _this = this;
         _this.init(function(bridge) {
             bridge.callHandler(method, data, callback);
@@ -63,9 +63,9 @@ var hybrid = {
 
     /*
      * 智能机浏览器版本信息:
-     * 调用该方法前，请现将您APP的userAgent修改为myapp，或者其他。
+     * 调用该方法前，如有必要请先将您APP的userAgent修改为myapp，或者其他。
      */
-    versions: function () {
+    versions: () => {
         var u = navigator.userAgent;
         return {
             //移动终端浏览器版本信息
@@ -90,4 +90,6 @@ var hybrid = {
 };
 
 // 模块暴露
-exports.hybrid = hybird;
+export {
+    hybrid
+}
